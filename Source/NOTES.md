@@ -5,3 +5,5 @@ https://mozilla.github.io/pdf.js/getting_started/#download
 
 
 https://www.electronforge.io/guides/create-and-add-icons
+
+https://www.electron.build/configuration.html

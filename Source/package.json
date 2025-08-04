@@ -7,6 +7,17 @@
         "start": "electron .",
         "make": "electron-builder"
     },
+    "build": {
+        "artifactName": "${productName}-${version}-${os}-${arch}.${ext}",
+        "appId": "com.dankrusi.litepdf",
+        "productName": "LitePDF",
+        "win": {
+            "target": [
+                "nsis",
+                "zip"
+            ]
+        }
+    },
     "repository": "https://github.com/dankrusi/LitePDF",
     "keywords": [
         "PDF",

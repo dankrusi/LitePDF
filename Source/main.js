@@ -1,8 +1,7 @@
 ﻿// Modules to control application life and create native browser window
-const { app, BrowserWindow } = require('electron');
+const { app, BrowserWindow, shell } = require('electron');
 const path = require('node:path');
 const url = require('node:url');
-
 
 // Check all command line args for any arg ending with .pdf and not starting with --
 function getPDFArg(argv, isPackaged, workingDirectory) {
@@ -44,6 +43,11 @@ function createWindowWithPdf(pdfPath) {
         }
     });
 
+    win.webContents.setWindowOpenHandler(({ url }) => {
+        shell.openExternal(url);
+        return { action: 'deny' }; // Don't open in Electron
+    });
+
     const viewerPath = path.join(__dirname, 'viewer.html');
     const fullUrl = `${viewerPath}?file=${encodeURIComponent(pdfUrl)}`;
     win.loadURL(fullUrl);
@@ -76,3 +80,4 @@ if (!gotTheLock) {
         app.quit();
     });
 }
+

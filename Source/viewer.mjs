@@ -12489,6 +12489,10 @@ class SecondaryToolbar {
       element: options.documentPropertiesButton,
       eventName: "documentproperties",
       close: true
+    }, {
+      element: options.aboutPropertiesButton,
+      eventName: "aboutproperties",
+      close: true
     }];
     buttons.push({
       element: options.openFileButton,
@@ -13513,6 +13517,7 @@ const PDFViewerApplication = {
   zoomOut() {
     this.updateZoom(-1);
   },
+  about() { window.open('https://github.com/dankrusi/litepdf', '_blank') },
   zoomReset() {
     if (this.pdfViewer.isInPresentationMode) {
       return;
@@ -14267,6 +14272,7 @@ const PDFViewerApplication = {
     eventBus._on("spreadmodechanged", onViewerModesChanged.bind(this, "spreadMode"), opts);
     eventBus._on("imagealttextsettings", onImageAltTextSettings.bind(this), opts);
     eventBus._on("documentproperties", () => pdfDocumentProperties?.open(), opts);
+    eventBus._on("aboutproperties", () => this.about.bind(this), opts);
     eventBus._on("findfromurlhash", onFindFromUrlHash.bind(this), opts);
     eventBus._on("updatefindmatchescount", onUpdateFindMatchesCount.bind(this), opts);
     eventBus._on("updatefindcontrolstate", onUpdateFindControlState.bind(this), opts);
@@ -15189,7 +15195,8 @@ function getViewerConfiguration() {
       spreadEvenButton: document.getElementById("spreadEven"),
       imageAltTextSettingsButton: document.getElementById("imageAltTextSettings"),
       imageAltTextSettingsSeparator: document.getElementById("imageAltTextSettingsSeparator"),
-      documentPropertiesButton: document.getElementById("documentProperties")
+      documentPropertiesButton: document.getElementById("documentProperties"),
+      aboutPropertiesButton: document.getElementById("aboutProperties")
     },
     sidebar: {
       outerContainer: document.getElementById("outerContainer"),
