@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="Content-Security-Policy"
+          content="default-src 'self'; script-src 'self' 'nonce-abc123';" />
+    <title>Electron PDF.js Desktop PDF Viewer Example</title>
+</head>
+<body>
+    <h1>Electron PDF.js Desktop PDF Viewer Example</h1>
+    <canvas id="pdfContainer"></canvas>
+
+    <!-- Import PDF.js as a module -->
+    <script type="module" nonce="abc123">
+        import * as pdfjsLib from './pdf.min.mjs';
+
+        // Set the workerSrc to point to the PDF.js worker script
+        pdfjsLib.GlobalWorkerOptions.workerSrc =
+            './pdf.worker.min.mjs';
+
+        async function renderPdf(pdfDocument) {
+            try {
+                const pdf = await pdfjsLib.getDocument(pdfDocument)
+                    .promise;
+                const pageNumber = 1;
+                const page = await pdf.getPage(pageNumber);
+                const scale = 1.5;
+                const viewport = page.getViewport({ scale });
+                const canvas = document.getElementById('pdfContainer');
+                const context = canvas.getContext('2d');
+                canvas.height = viewport.height;
+                canvas.width = viewport.width;
+                const renderContext = {
+                    canvasContext: context,
+                    viewport,
+                };
+                page.render(renderContext);
+            } catch (error) {
+                console.error(error);
+            }
+        }
+
+        const pdfPath = 'test.pdf'; // Path to your PDF file
+        renderPdf(pdfPath);
+    </script>
+</body>
+</html>
