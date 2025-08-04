@@ -4,6 +4,10 @@ A free and lightweight no-BS PDF viewer. And no, it doesn't have AI.
 
 ![Screenshot](Images/Screenshots/Win11/LtiePDF_Screenshot_Win11_A.png)
 
+## 💾 Install
+
+[Windows 10/11 64bit Setup](https://github.com/dankrusi/LitePDF/releases/download/v1.0/LitePDF-1.0.0-win-x64.exe)
+
 ## ⚡ Features
 
 * Open a PDF
@@ -23,7 +27,7 @@ A free and lightweight no-BS PDF viewer. And no, it doesn't have AI.
 * Chat with your PDF files
 
 
-## Screenshots
+## 📺 Screenshots
 
 ![PDF Viewer Screenshot of Menu](Images/Screenshots/Win11/LtiePDF_Screenshot_Win11_C.png)
 ![PDF Viewer Screenshot of Document Properties](Images/Screenshots/Win11/LtiePDF_Screenshot_Win11_D.png)
