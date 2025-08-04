@@ -1,23 +1,22 @@
 {
-  "name": "electron-quick-start",
-  "version": "1.0.0",
-  "description": "A minimal Electron application",
-  "main": "main.js",
-  "scripts": {
-    "start": "electron ."
-  },
-  "repository": "https://github.com/electron/electron-quick-start",
-  "keywords": [
-    "Electron",
-    "quick",
-    "start",
-    "tutorial",
-    "demo"
-  ],
-  "author": "GitHub",
-  "license": "CC0-1.0",
-  "devDependencies": {
-    "electron": "^33.2.0",
-    "pdfjs-dist": "^4.8.69"
-  }
+    "name": "lite-pdf",
+    "version": "1.0.0",
+    "description": "A free and lightweight no-BS PDF viewer. And no, it doesn't have AI.",
+    "main": "main.js",
+    "scripts": {
+        "start": "electron .",
+        "make": "electron-builder"
+    },
+    "repository": "https://github.com/dankrusi/LitePDF",
+    "keywords": [
+        "PDF",
+        "PDF Viewer"
+    ],
+    "author": "Dan Krusi",
+    "license": "GPL-3.0-only",
+    "devDependencies": {
+        "electron": "^33.2.0",
+        "electron-builder": "^26.0.12",
+        "pdfjs-dist": "^4.8.69"
+    }
 }
