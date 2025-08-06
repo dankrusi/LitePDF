@@ -16,6 +16,15 @@
                 "nsis",
                 "zip"
             ]
+        },
+        "mac": {
+            "fileAssociations": [
+                {
+                    "ext": "pdf",
+                    "name": "PDF Document",
+                    "role": "Viewer"
+                }
+            ]
         }
     },
     "repository": "https://github.com/dankrusi/LitePDF",

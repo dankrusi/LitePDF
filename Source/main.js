@@ -43,14 +43,20 @@ function createWindowWithPdf(pdfPath) {
         }
     });
 
+
     win.webContents.setWindowOpenHandler(({ url }) => {
         shell.openExternal(url);
         return { action: 'deny' }; // Don't open in Electron
     });
 
     const viewerPath = path.join(__dirname, 'viewer.html');
-    const fullUrl = `${viewerPath}?file=${encodeURIComponent(pdfUrl)}`;
+    const fullUrl = `file://${viewerPath}?file=${encodeURIComponent(pdfUrl)}`;
     win.loadURL(fullUrl);
+ 
+
+    // Show DevTools
+    //win.webContents.openDevTools();  
+
 }
 
 // Prevent multiple instances
@@ -67,9 +73,25 @@ if (!gotTheLock) {
         }
     });
 
+    let pdfOpenedBeforeReady = null;
+    app.on('open-file', (event, filePath) => {
+        event.preventDefault();
+        if (app.isReady()) {
+            createWindowWithPdf(filePath);
+        } else {
+            pdfOpenedBeforeReady = filePath;
+        }
+    });
+
     app.whenReady().then(() => {
-        const pdfPath = getPDFArg(process.argv, app.isPackaged);
-        createWindowWithPdf(pdfPath);
+        if (pdfOpenedBeforeReady) {
+            const pdfPath = pdfOpenedBeforeReady;
+            createWindowWithPdf(pdfPath);
+        } else {
+            
+            const pdfPath = getPDFArg(process.argv, app.isPackaged);
+            createWindowWithPdf(pdfPath);
+        }
 
         //app.on('activate', () => {
         //    if (BrowserWindow.getAllWindows().length === 0) createWindow();
